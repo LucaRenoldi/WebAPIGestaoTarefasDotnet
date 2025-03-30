@@ -25,14 +25,10 @@
         {
             var tarefa = await _context.Tarefas.Include(t => t.Categoria)
                                                 .FirstOrDefaultAsync(t => t.Id == id);
-            if (tarefa == null)
-            {
-                throw new KeyNotFoundException($"Tarefa com ID {id} não foi encontrada.");
-            }
-            return tarefa;
-        }
+            return tarefa == null ? throw new KeyNotFoundException($"Tarefa com ID {id} não foi encontrada.") : tarefa;
+    }
 
-        public async Task<Tarefa> CreateAsync(Tarefa tarefa)
+    public async Task<Tarefa> CreateAsync(Tarefa tarefa)
         {
             _context.Tarefas.Add(tarefa);
             await _context.SaveChangesAsync();
@@ -44,7 +40,7 @@
             var tarefaExistente = await _context.Tarefas.FindAsync(id);
 
             if (tarefaExistente == null) {
-                throw new ArgumentException("A tarefa selecionada não existe");
+                throw new ArgumentException("A tarefa selecionada não eciste");
             }
 
             if (string.IsNullOrEmpty(tarefa.titulo))
