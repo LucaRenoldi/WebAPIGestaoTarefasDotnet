@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.CodeAnalysis;
 
 public class Tarefa{
         [Key]
@@ -15,10 +15,10 @@ public class Tarefa{
         public string titulo { get; set; } = string.Empty;
 
         [MaxLength(1000)]
-        public string? descrição { get; set; }
+        public string? descricao { get; set; }
 
         [Required]
-        public bool completou { get; set; } = false;
+        public bool concluida { get; set; } = false;
 
         public DateTime  horarioCriacao{ get; set; } = DateTime.UtcNow;
         public DateTime? prazo { get; set; }
