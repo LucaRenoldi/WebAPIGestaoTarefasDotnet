@@ -11,8 +11,9 @@ using System.ComponentModel.DataAnnotations;
             [MaxLength(100)]
             public string Name { get; set; } = String.Empty;
 
+
             // Relação com tarefas
-            public ICollection<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
+            public ICollection<Tarefa> Tarefas { get; set; } = [];
         }
 
 

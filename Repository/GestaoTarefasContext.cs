@@ -13,7 +13,7 @@
 
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=1313");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=gestao_tarefas;Username=postgres;Password=1313");
             }
         }
     }

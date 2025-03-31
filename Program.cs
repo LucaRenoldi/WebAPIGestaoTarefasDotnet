@@ -1,16 +1,23 @@
 using APIGestãoTarefas.Repository;
+using APIGestãoTarefas.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicionando serviços
 // Configuração do DbContext com PostgreSQL
 builder.Services.AddDbContext<GestaoTarefasContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Adicionando serviços
+// Configurar a serialização com ReferenceHandler.Preserve
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITarefaService, TarefaService>();
 
 var app = builder.Build();
 

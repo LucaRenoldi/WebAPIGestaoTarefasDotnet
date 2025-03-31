@@ -20,11 +20,14 @@ public class Tarefa{
         [Required]
         public bool concluida { get; set; } = false;
 
-        public DateTime  horarioCriacao{ get; set; } = DateTime.UtcNow;
+        // Atribuindo a data e hora atual em UTC
+        public DateTime horarioCriacao { get; set; } = DateTime.UtcNow;
+
+    // Certificando-se de que a data de prazo também seja UTC
         public DateTime? prazo { get; set; }
 
-        // Chave estrangeira para a categoria
-        public int categoriaId { get; set; }
+    // Chave estrangeira para a categoria
+    public int categoriaId { get; set; }
         public Categoria? Categoria { get; set; }
 
         // Chave estrangeira para o usuário (para futura implementar autenticação)

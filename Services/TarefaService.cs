@@ -18,7 +18,7 @@
 
         public async Task<IEnumerable<Tarefa>> GetAllAsync()
         {
-            return await _context.Tarefas.Include(t => t.Categoria).ToListAsync(); // Incluindo categoria associada
+            return await _context.Tarefas.Include(t => t.Categoria).ToListAsync(); 
         }
 
         public async Task<Tarefa> GetByIdAsync(int id)
@@ -40,12 +40,7 @@
             var tarefaExistente = await _context.Tarefas.FindAsync(id);
 
             if (tarefaExistente == null) {
-                throw new ArgumentException("A tarefa selecionada não eciste");
-            }
-
-            if (string.IsNullOrEmpty(tarefa.titulo))
-            {
-                throw new ArgumentException("O título não pode ser vazio.");
+                throw new ArgumentException("A tarefa selecionada não existe");
             }
 
             tarefaExistente.titulo = tarefa.titulo;
